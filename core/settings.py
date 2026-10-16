@@ -11,10 +11,7 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
 from pathlib import Path
-<<<<<<< HEAD
 from decouple import config
-=======
->>>>>>> 96dd9e8b874e2b731393b3b765924d45f58a6fd2
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,20 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-<<<<<<< HEAD
-SECRET_KEY = config('SECRET_KEY')
-=======
-SECRET_KEY = 'django-insecure-*@+djfv4*ag(bls-$zf_$arx@99jq(s$_-ion+5$=vk6q#%cqm'
->>>>>>> 96dd9e8b874e2b731393b3b765924d45f58a6fd2
+SECRET_KEY = config(
+    'SECRET_KEY',
+    default='django-insecure-local-development-only-change-me',
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-<<<<<<< HEAD
 ALLOWED_HOSTS = ['localhost','127.0.0.1']
-=======
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
->>>>>>> 96dd9e8b874e2b731393b3b765924d45f58a6fd2
 
 
 # Application definition
@@ -49,12 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
     'rest_framework',
     'Vet_app'
-=======
-    'Vet_app',
->>>>>>> 96dd9e8b874e2b731393b3b765924d45f58a6fd2
 ]
 
 MIDDLEWARE = [
@@ -91,19 +79,21 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-<<<<<<< HEAD
+    'default': (
+        {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': config('DB_NAME'),
         'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT'),
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
-=======
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
->>>>>>> 96dd9e8b874e2b731393b3b765924d45f58a6fd2
-    }
+        }
+        if config('DB_NAME', default='')
+        else {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    ),
 }
 
 
@@ -131,19 +121,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-cl'
 
-<<<<<<< HEAD
 TIME_ZONE = 'America/Santiago'
 
 USE_I18N = True
 
 USE_TZ = False
-=======
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_TZ = True
->>>>>>> 96dd9e8b874e2b731393b3b765924d45f58a6fd2
 
 
 # Static files (CSS, JavaScript, Images)

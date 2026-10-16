@@ -1,12 +1,10 @@
-from django.urls import path,include
-from rest_framework import routers
-from Vet_app import views
+from django.urls import include, path
 
-enrutador = routers.DefaultRouter()
-enrutador.register(r'usuarios', views.UsuarioViewSet)
-enrutador.register(r'mascotas', views.MascotaViewSet)
+from . import views
 
 urlpatterns = [
     path('', views.landing_page, name='landing_page'),
-    path('api/', include(enrutador.urls)),
+    path('index/', views.landing_page, name='index'),
+    path('inicio/', views.inicio, name='inicio'),
+    path('api/', include('Vet_app.api_urls')),
 ]
